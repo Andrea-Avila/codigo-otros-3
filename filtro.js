@@ -1,34 +1,40 @@
 // Tenemos un li de productos
 
-const productos = [
+const productos = [ //Este es un array de objetos
   {nombre: "Zapato negro", tipo: "zapato", color: "negro", img: "./taco-negro.jpg"},
   {nombre: "Zapato azul", tipo: "zapato", color: "azul", img: "./taco-azul.jpg"},
   {nombre: "Bota negra", tipo: "bota", color: "negro", img: "./bota-negra.jpg"},
   {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./bota-azul.jpg"},
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
-]
+];
 
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+//console.log(productos.length);
 
-for (let i = 0; i < productos.length; i++) {
-  var d = document.createElement("div")
-  d.classList.add("producto")
+const listaParaImprimir = document.getElementById('lista-de-productos').value;//Se le cambia el get por uno que traiga por ID 
+const productosDelCliente = document.getElementById('nombredeInput').value; //Trae los datos correctamente 
 
-  var ti = document.createElement("p")
-  ti.classList.add("titulo")
-  ti.textContent = productos[i].nombre
+// console.log(li);
+// console.log(suinpiut);
+
+// for (let i = 0; i < productos.length; i++) { //Se comenta codigo extra que no relaiza ninguna funcionalidad maravillosa
+//   var d = document.createElement("div")
+//   d.classList.add("producto")
+
+//   var ti = document.createElement("p")
+//   ti.classList.add("titulo")
+//   ti.textContent = productos[i].nombre
   
-  var imagen = document.createElement("img");
-  imagen.setAttribute('src', productos[i].img);
+//   var imagen = document.createElement("img");
+//   imagen.setAttribute('src', productos[i].img);
 
-  d.appendChild(ti)
-  d.appendChild(imagen)
+//   d.appendChild(ti)
+//   d.appendChild(imagen)
 
-  li.appendChild(d)
-}
+//   li.appendChild(d)
 
-displayProductos(productos)
+// }
+
+// displayProductos(productos);
 const botonDeFiltro = document.querySelector("button");
 
 botonDeFiltro.onclick = function() {
@@ -36,7 +42,7 @@ botonDeFiltro.onclick = function() {
     li.removeChild(li.firstChild);
   }
 
-  const texto = $i.value;
+  const texto = productosDelCliente.value;
   console.log(texto);
   const productosFiltrados = filtrado(productos, texto );
 
@@ -57,7 +63,6 @@ botonDeFiltro.onclick = function() {
     li.appendChild(d)
   }
 }
-
-const filtrado = (productos = [], texto) => {
+const filtrado = (producto = [], texto) => {
   return productos.filter(item => item.tipo.includes(texto) || item.color.includes(texto));
 }  
